@@ -1,0 +1,71 @@
+
+.card-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  overflow-x: auto; /* Gør containeren scrollbar horisontalt */
+  margin-bottom: 1rem;
+}
+
+
+.card {
+  background-color: #1e1e1e;  /* Mørk baggrund for kortene */
+  border-radius: 10px;
+  overflow: hidden;
+  width: 200px; /* Kortets bredde */
+  margin: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.image {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+.headerText {
+  padding: 10px;
+}
+
+.headerText h2 {
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.headerText p {
+  color: #ff9800;  /* Rating tekst i orange */
+  font-weight: bold;
+}
+
+.content {
+  padding: 10px;
+}
+
+.summary {
+  color: #bbb;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.actions {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.actions span {
+  display: inline-block;
+  margin-top: 5px;
+}
