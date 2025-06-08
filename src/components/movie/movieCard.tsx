@@ -1,3 +1,4 @@
+"use client";
 import { Movie } from "@/types/movies";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +11,7 @@ interface MovieCardProps {
 const MovieCard = ({ movie }: MovieCardProps) => {
   return (
     <article className={classes.card}>
-      <Link href={`/movies/${movie.id}`}>
+      <Link href={`/movies/${movie.id}`} className={classes.link}>
         <div className={classes.image}>
           <Image
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

@@ -33,9 +33,9 @@ export default async function Popular() {
 
   return (
     <div className="p-6 text-white">
-      <h1 className="text-2xl font-bold mb-4">Popular Movies</h1>
+      <h1 className="text-2xl font-bold mb-4Ce">Popular Movies</h1>
 
-      <div className={classes.controls}>
+      <div className={classes.cardContainer}>
         {data.results.map((movie: Movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
