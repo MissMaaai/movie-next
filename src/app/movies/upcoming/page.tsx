@@ -1,30 +1,18 @@
 import { getMoviesByCategory } from "@/lib/tmdb";
 import { Movie } from "@/types/movies";
-import Image from "next/image";
-import Link from "next/link";
+import MovieCard from "@/components/movie/movieCard";
+import classes from "@/components/movie/movieCard.module.css";
 
-export default async function upcoming() {
+export default async function Upcoming() {
   const data = await getMoviesByCategory("upcoming");
 
   return (
-    <div>
-      <h1>Highest Rated</h1>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div className="p-6 text-white">
+      <h1 className="text-center text-4xl font-bold mb-4">Upcoming</h1>
+
+      <div className={classes.cardContainer}>
         {data.results.map((movie: Movie) => (
-          <div key={movie.id}>
-            <Link href={`/movies/${movie.id}`}>
-              <Image
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-                width={300}
-                height={450}
-              />
-              <p>{movie.title}</p>
-              <p>Rating: {movie.vote_average}</p>
-              <p>Release Date: {movie.release_date}</p>
-              <p>{movie.overview}</p>
-            </Link>
-          </div>
+          <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
     </div>

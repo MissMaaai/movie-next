@@ -2,9 +2,11 @@ import { ReactNode } from "react";
 import "./globals.css";
 import Header from "@/components/header/header";
 
+
 export const metadata = {
+  // Metadata for the application
   title: "Next.js Movie Finder",
-  description: "Browse movies using the TMDB API",
+  description: "Find your favorite movies with Next.js",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

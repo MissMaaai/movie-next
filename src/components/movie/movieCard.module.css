@@ -8,12 +8,12 @@
 }
 
 .cardContainer::-webkit-scrollbar {
-  height: 10px; /* Make scrollbar slightly thicker */
+  height: 10px; /* scrollbar slightly  */
 }
 
 .cardContainer::-webkit-scrollbar-thumb {
-  background: #888; /* Lighter background for thumb */
-  border-radius: 15px; /* More rounded edges */
+  background: #888;
+  border-radius: 0px; /* More rounded edges */
 }
 
 .card {
@@ -39,6 +39,12 @@
 }
 
 .image {
+  width: 10rem;
+  height: 35rem;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
   position: relative;
   height: 400px; /* Increased height for better visuals */
   width: 100%;
@@ -56,7 +62,7 @@
 }
 
 .headerText p {
-  color: whote;
+  color: white;
   font-weight: bold;
   font-size: 1.1rem;
 }

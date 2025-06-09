@@ -5,6 +5,7 @@ import Link from "next/link";
 import classes from "./movieCard.module.css";
 
 interface MovieCardProps {
+  //interface for the props
   movie: Movie;
 }
 
@@ -21,9 +22,10 @@ const MovieCard = ({ movie }: MovieCardProps) => {
             sizes="(max-width: 768px) 100vw, 33vw"
           />
         </div>
+
         <div className={classes.headerText}>
           <h2>{movie.title}</h2>
-          <p>Rating: {movie.vote_average}</p>
+          <p>⭐ Rating: {movie.vote_average}</p>
         </div>
         <div className={classes.content}>
           <p className={classes.summary}>

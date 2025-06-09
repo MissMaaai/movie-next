@@ -5,7 +5,7 @@ import Image from "next/image";
 import logo from "@/assets/logo.jpg";
 import Link from "next/link";
 import classes from "./header.module.css";
-import SearchBar from "../searchBar";
+import SearchBar from "../search/searchBar";
 
 export default function Header() {
   return (
@@ -14,7 +14,7 @@ export default function Header() {
         <div className={classes.logoContainer}>
           <Link href="/" className={classes.logo}>
             <Image src={logo} alt="Logo" width={40} height={40} priority />
-            <span className={classes.title}>Next.js </span>
+            <span className={classes.title}>Mai Movie Finder </span>
           </Link>
         </div>
         <nav className={classes.nav}>

@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0rem;
+  margin-right: 2rem;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.input {
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  width: 250px;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: gray;
+  color: #fff;
+  border: none;
+  height: 40px;
+  cursor: pointer;
+}
