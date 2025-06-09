@@ -1,10 +1,10 @@
-import { getMoviesByCategory } from "@/lib/tmdb";
+import { getMovie } from "@/lib/movies";
 import { Movie } from "@/types/movies";
 import MovieCard from "@/components/movie/movieCard";
 import classes from "@/components/movie/movieCard.module.css";
 
 export default async function Upcoming() {
-  const data = await getMoviesByCategory("upcoming");
+  const data = await getMovie("upcoming");
 
   return (
     <div className="p-6 text-white">

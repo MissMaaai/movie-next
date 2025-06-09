@@ -1,4 +1,4 @@
-import { searchMovies } from "@/lib/search";
+import { getMovie } from "@/lib/movies";
 import MovieCard from "@/components/movie/movieCard";
 import { Movie } from "@/types/movies";
 import classes from "@/components/movie/movieCard.module.css";
@@ -16,7 +16,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
   let data;
   try {
-    data = await searchMovies(query); // Hent film med søgeord
+    data = await getMovie(query); // Hent film med søgeord
   } catch {
     return <div>Failed to load movies.</div>; // Fejl ved hentning
   }
