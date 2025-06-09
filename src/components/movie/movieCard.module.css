@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem; /* Increase gap for better spacing */
-  list-style: none;
   padding: 2rem;
   overflow-x: auto; /* scrolling */
 }
@@ -13,14 +12,14 @@
 
 .cardContainer::-webkit-scrollbar-thumb {
   background: #888;
-  border-radius: 0px; /* More rounded edges */
 }
 
 .card {
   background-color: #2c2c2c; /* Slightly lighter background */
-  border-radius: 15px; /* Larger border radius */
+  border-radius: 10px; /* Larger border radius */
   overflow: hidden;
-  width: 100%; /* Make cards fully responsive */
+  min-width: 300px;
+  max-width: 400px;
   flex: 0 0 auto;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Stronger shadow for a more prominent effect */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -39,15 +38,13 @@
 }
 
 .image {
-  width: 10rem;
-  height: 35rem;
   border: 0;
   display: flex;
   justify-content: center;
   text-align: center;
   position: relative;
-  height: 400px; /* Increased height for better visuals */
   width: 100%;
+  height: 500px;
   object-fit: cover; /* Ensure image covers area without distortion */
 }
 
@@ -81,4 +78,8 @@
   font-size: 1rem; /* Increase font size for actions */
   color: #bbb;
   text-align: right;
+}
+
+.favoriteicon {
+  font-size: 2rem;
 }

@@ -11,7 +11,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const query = searchParams.q || ""; // Hent query fra URL
 
   if (!query) {
-    return <div>No search term provided.</div>; // Ingen søgning givet
+    return <div>You did not enter search term </div>; // Ingen søgning givet
   }
 
   let data;
@@ -28,7 +28,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   return (
     <div className="p-6 text-white">
       <h1 className="text-center text-4xl font-bold mb-4">
-        Movies you searched for
+        Result of searched Movies
       </h1>
       <div className={classes.cardContainer}>
         {filtered.map((movie) => (
