@@ -8,6 +8,7 @@ interface MoviePageProps {
     id: string;
   };
 }
+
 export async function generateMetadata({ params }: MoviePageProps) {
   const movie = await getMovie(params.id);
   if (!movie) {
@@ -18,13 +19,15 @@ export async function generateMetadata({ params }: MoviePageProps) {
     description: movie.overview,
   };
 }
+
 export default async function MovieDetailsPage({ params }: MoviePageProps) {
   const movie = await getMovie(params.id);
   if (!movie) {
     notFound();
   }
+
   return (
-    <>
+    <div className={classes.container}>
       <header className={classes.header}>
         <div className={classes.image}>
           <Image
@@ -35,13 +38,14 @@ export default async function MovieDetailsPage({ params }: MoviePageProps) {
         </div>
         <div className={classes.headerText}>
           <h1>{movie.title}</h1>
-          <p className={classes.release}>Released: {movie.release_date}</p>
-          <p className={classes.overview}>{movie.overview}</p>
+          <p>⭐ Rating: {movie.vote_average}</p>
+          <p className={classes.release}>🎬 Released: {movie.release_date}</p>
         </div>
       </header>
-      <main>
-        <p className={classes.rating}>Rating: {movie.vote_average}/10</p>
-      </main>
-    </>
+      <section className={classes.overviewSection}>
+        <h2>Description</h2>
+        <p className={classes.overview}>{movie.overview}</p>
+      </section>
+    </div>
   );
 }
