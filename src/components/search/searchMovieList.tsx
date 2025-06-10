@@ -1,12 +1,10 @@
 "use client";
-
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
 export default function SearchMovie() {
-  const router = useRouter();
   const searchParams = useSearchParams();
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
     const initial = searchParams.get("q") || "";
@@ -15,7 +13,13 @@ export default function SearchMovie() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push(`/search?q=${encodeURIComponent(searchTerm)}`);
+    // Sørg for at sende brugeren til den korrekte URL
+    if (searchTerm.trim()) {
+      // Opret URL'en korrekt uden ekstra '='
+      window.location.href = `/search?q=${encodeURIComponent(
+        searchTerm.trim()
+      )}`;
+    }
   };
 
   return (
@@ -26,6 +30,7 @@ export default function SearchMovie() {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
+      <button type="submit">Search</button>
     </form>
   );
 }

@@ -1,8 +1,7 @@
 "use client";
-
-import { useSearchParams } from "next/navigation"; // For klientkomponent
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getMovie } from "@/lib/movies";
+import { searchMovies } from "@/lib/searchMovies"; // Importer den nye søgefunktion
 import MovieCard from "@/components/movie/movieCard";
 import { Movie } from "@/types/movies";
 import classes from "@/components/movie/movieCard.module.css";
@@ -18,7 +17,7 @@ export default function SearchPage() {
     if (query) {
       const fetchMovies = async () => {
         try {
-          const data = await getMovie(query);
+          const data = await searchMovies(query); // Brug den nye funktion
           const filtered = (data.results as Movie[]).filter(
             (movie) => movie.poster_path
           );
