@@ -27,6 +27,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.title}
             fill
+            sizes="(max-width: 768px) 100vw, (min-width: 769px) 50vw"
           />
         </div>
 

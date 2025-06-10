@@ -11,3 +11,4 @@ export async function getMovie(id: string) {
 
   return res.json();
 }
+

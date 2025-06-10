@@ -4,12 +4,13 @@ import classes from "./page.module.css";
 import { notFound } from "next/navigation";
 
 interface MoviePageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export async function generateMetadata({ params }: MoviePageProps) {
+export async function generateMetadata(props: MoviePageProps) {
+  const params = await props.params;
   const movie = await getMovie(params.id);
   if (!movie) {
     notFound();
@@ -20,7 +21,8 @@ export async function generateMetadata({ params }: MoviePageProps) {
   };
 }
 
-export default async function MovieDetailsPage({ params }: MoviePageProps) {
+export default async function MovieDetailsPage(props: MoviePageProps) {
+  const params = await props.params;
   const movie = await getMovie(params.id);
   if (!movie) {
     notFound();

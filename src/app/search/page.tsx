@@ -1,37 +1,56 @@
+"use client";
+
+import { useSearchParams } from "next/navigation"; // For klientkomponent
+import { useEffect, useState } from "react";
 import { getMovie } from "@/lib/movies";
 import MovieCard from "@/components/movie/movieCard";
 import { Movie } from "@/types/movies";
 import classes from "@/components/movie/movieCard.module.css";
 
-interface SearchPageProps {
-  searchParams: { q?: string };
-}
+export default function SearchPage() {
+  const searchParams = useSearchParams();
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const query = searchParams.q || ""; // Hent query fra URL
+  useEffect(() => {
+    const query = searchParams.get("q");
+    if (query) {
+      const fetchMovies = async () => {
+        try {
+          const data = await getMovie(query);
+          const filtered = (data.results as Movie[]).filter(
+            (movie) => movie.poster_path
+          );
+          setMovies(filtered);
+        } catch {
+          setError("Failed to load movies.");
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchMovies();
+    } else {
+      setLoading(false);
+      setError("No search term provided.");
+    }
+  }, [searchParams]);
 
-  if (!query) {
-    return <div>You did not enter search term </div>; // Ingen søgning givet
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
-  let data;
-  try {
-    data = await getMovie(query); // Hent film med søgeord
-  } catch {
-    return <div>Failed to load movies.</div>; // Fejl ved hentning
+  if (error) {
+    return <div>{error}</div>;
   }
-
-  const filtered = (data.results as Movie[]).filter(
-    (movie) => movie.poster_path
-  );
 
   return (
     <div className="p-6 text-white">
       <h1 className="text-center text-4xl font-bold mb-4">
-        Result of searched Movies
+        Movies you searched for
       </h1>
       <div className={classes.cardContainer}>
-        {filtered.map((movie) => (
+        {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
