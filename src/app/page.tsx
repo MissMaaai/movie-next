@@ -8,7 +8,7 @@ export default function HomePage() {
       <br />
       <p>Select a category from the menu to explore movies.</p>
       <br />
-      <Image src={logo} alt="Logo" width={600} height={600} priority />
+      <Image src={logo} alt="Logo" width={700} height={700} priority />
     </div>
   );
 }
