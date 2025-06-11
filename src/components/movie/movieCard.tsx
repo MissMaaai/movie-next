@@ -46,13 +46,18 @@ const MovieCard = ({ movie }: MovieCardProps) => {
             <span>Release: {movie.release_date}</span>
           </div>
 
-          <div className={classes.favoriteButton} onClick={toggleFavorite}>
+          <button
+            className={classes.favoriteButton}
+            onClick={toggleFavorite}
+          >
             {isFavorite ? <Heart color="red" fill="red" /> : <Heart />}
-          </div>
+          </button>
         </div>
       </Link>
     </article>
   );
 };
 
-export default MovieCard;
+export default MovieCard; 
+
+

@@ -3,7 +3,6 @@ import { Movie } from "@/types/movies";
 import MovieCard from "@/components/movie/movieCard";
 import classes from "@/components/movie/movieCard.module.css";
 
-
 export default async function Upcoming() {
   const data = await getMovie("upcoming");
 
