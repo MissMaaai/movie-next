@@ -1,5 +1,6 @@
 import Image from "next/image";
 import classes from "./page.module.css";
+import DeleteFavorite from "@/components/deleteFavorite";
 
 interface FavoriteMovie {
   id: number;
@@ -22,7 +23,7 @@ export default async function FavoritesPage() {
   const favorites: FavoriteMovie[] = await res.json();
 
   if (favorites.length === 0) {
-    return <p>Du har ingen favoritter endnu.</p>;
+    return <h1>No favorites yet</h1>;
   }
 
   return (
@@ -53,6 +54,7 @@ export default async function FavoritesPage() {
               <div className={classes.actions}>
                 <span>Release: {movie.release_date}</span>
               </div>
+              <DeleteFavorite movieId={movie.id} />
             </div>
           </li>
         ))}
