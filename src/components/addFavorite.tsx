@@ -1,46 +1,50 @@
-/* // components/FavoriteButton.tsx
+"use client";
+
 import { useState } from "react";
+import { Movie } from "@/types/movies";
+import { Heart } from "lucide-react";
 
-type Props = {
-  movieId: number;
-  title: string;
-  posterPath: string;
-};
+interface AddFavoriteProps {
+  movie: Movie;
+}
 
-export default function FavoriteButton({ movieId, title, posterPath }: Props) {
+const AddFavorite = ({ movie }: AddFavoriteProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const toggleFavorite = async () => {
-    const method = isFavorite ? "DELETE" : "POST";
-    const body = JSON.stringify({
-      tmdbId: movieId,
-      title: title,
-      posterPath: posterPath,
-    });
+  // Handle click on the favorite button
+  const toggleFavorite = async (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent navigation when clicking the heart
+
+    const method = isFavorite ? "DELETE" : "POST"; // Use POST to add, DELETE to remove
 
     try {
-      const response = await fetch("/api/favorites", {
+      const res = await fetch("/api/favoriteMovies", {
         method,
-        headers: { "Content-Type": "application/json" },
-        body,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(movie),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to add/remove from favorites");
+      if (res.ok) {
+        setIsFavorite(!isFavorite); // If success, toggle the status
+      } else {
+        console.error("Could not add/remove from favorites");
       }
-
-      // Skift tilstanden af knappen
-      setIsFavorite(!isFavorite);
     } catch (error) {
-      console.error("Error:", error);
-      alert("An error occurred while updating favorites.");
+      console.error("Error adding/removing favorite:", error);
     }
   };
 
   return (
     <button onClick={toggleFavorite}>
-      {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+      {isFavorite ? (
+        <Heart color="red" fill="red" />
+      ) : (
+        <Heart />
+      )}
     </button>
   );
-}
- */
+};
+
+export default AddFavorite;
