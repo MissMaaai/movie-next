@@ -32,7 +32,7 @@ export default function Header() {
               <Link href="/movies/upcoming">Upcoming</Link>
             </li>
             <li>
-              <Link href="/movies/favorites">Favorites</Link>
+              <Link href="/favorites">Favorites</Link>
             </li>
           </ul>
         </nav>

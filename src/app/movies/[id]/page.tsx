@@ -16,8 +16,13 @@ export async function generateMetadata(props: MoviePageProps) {
     notFound();
   }
   return {
+    movie_id: movie.id,
     title: movie.title,
     description: movie.overview,
+    posterPath: movie.poster_path,
+    voteAverage: movie.vote_average,
+    overview: movie.overview,
+    releaseDate: movie.release_date,
   };
 }
 
@@ -51,3 +56,5 @@ export default async function MovieDetailsPage(props: MoviePageProps) {
     </div>
   );
 }
+
+

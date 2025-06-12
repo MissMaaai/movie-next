@@ -1,43 +1,64 @@
 /* import sql from "better-sqlite3";
-import { resolve } from "path";
 
-// Opret forbindelse til SQLite-databasen, hvis den ikke findes, bliver den oprettet
-const db = new sql("movies.db");
-
-function initDb(){
-    db.exec(`
-        CREATE TABLE IF NOT EXISTS favorites (
-            id INTEGER PRIMARY KEY,
-            title TEXT NOT NULL,
-            posterPath TEXT NOT NULL
-            voteAverage REAL NOT NULL,
-            overview TEXT NOT NULL,
-            releaseDate TEXT NOT NULL)`);
-
-
-
-export async function storeFavoriteMovies(movie)
-const stmt = db.prepare(`
-        INSERT INTO favorites (
-        title, posterPath, voteAverage, overview, releaseDate)
-        VALUES (?, ?, ?, ?, ?)`);
-        await new promise(()resolve => setTimeout(resolve, 1000));
-    stmt.run(movie.title, movie.posterPath, movie.voteAverage, movie.overview, movie.releaseDate);
-} */
-
-import sql from "better-sqlite3";
-
-// Opretter eller åbner SQLite databasen
 const db = new sql("favorites.db");
 
-// Opretter tabel med en `id` kolonne som en auto-increment primærnøgle
+// Opret tabel til favoritter, hvis den ikke allerede eksisterer
+const createFavoritesTable = () => {
+  const stmt = db.prepare(`
+    CREATE TABLE IF NOT EXISTS favorites (
+      movie_id INTEGER PRIMARY KEY,
+      title TEXT NOT NULL,
+      poster_path TEXT NOT NULL,
+      vote_average REAL NOT NULL,
+      overview TEXT NOT NULL,
+      release_date TEXT NOT NULL
+    );
+  `);
+  stmt.run();
+};
+
+export { db, createFavoritesTable };
+ */
+
+/* import sql from "better-sqlite3";
+import path from "path";
+
+// Sørg for at databasen ligger i roden af projektet
+const dbPath = path.resolve(process.cwd(), "data.db");
+const db = new sql(dbPath);
+
+// Opret tabel hvis den ikke findes
 db.prepare(
   `
-    CREATE TABLE IF NOT EXISTS favorites (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,  -- Unik ID for hver favorit
-      movie_id INTEGER NOT NULL UNIQUE       -- movie_id for filmen
-    )
-  `
+  CREATE TABLE IF NOT EXISTS favoriteMovies (
+    id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL,
+    overview TEXT,
+    poster_path TEXT,
+    vote_average REAL,
+    release_date TEXT
+  )
+`
 ).run();
 
-export { db };
+export default db; */
+
+
+import Database from "better-sqlite3";
+import { join } from "path";
+
+const dbPath = join(process.cwd(), "favorites.db");
+const db = new Database(dbPath);
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS favorites (
+    id INTEGER PRIMARY KEY,
+    title TEXT,
+    overview TEXT,
+    poster_path TEXT,
+    vote_average REAL,
+    release_date TEXT
+  )
+`);
+
+export default db;
