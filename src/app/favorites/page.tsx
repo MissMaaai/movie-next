@@ -36,8 +36,8 @@ export default async function FavoritesPage() {
               <Image
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
-                width={200}
-                height={300}
+                fill
+                sizes="(max-width: 768px) 100vw, (min-width: 769px) 50vw"
               />
             </div>
             <div className={classes.headerText}>

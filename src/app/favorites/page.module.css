@@ -1,23 +1,34 @@
 .cardContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Justerede kortbredde */
-  gap: 1.5rem; /* Øg afstanden mellem kortene */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem; /* Increase gap for better spacing */
   padding: 2rem;
+  overflow-x: auto; /* scrolling */
+}
+
+.cardContainer::-webkit-scrollbar {
+  height: 10px; /* scrollbar slightly  */
+}
+
+.cardContainer::-webkit-scrollbar-thumb {
+  background: #888;
 }
 
 .card {
-  background-color: #333; /* Lettere baggrund */
-  border-radius: 12px; /* Afrundede hjørner */
+  background-color: #2c2c2c; /* Slightly lighter background */
+  border-radius: 10px; /* Larger border radius */
   overflow: hidden;
-  min-width: 280px;
-  max-width: 380px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Blødere skygge */
+  min-width: 300px;
+  max-width: 400px;
+  flex: 0 0 auto;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Stronger shadow for a more prominent effect */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  scroll-snap-align: start;
 }
 
 .card:hover {
-  transform: translateY(-4px); /* Mere subtil hover-effekt */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /* Større skygge på hover */
+  transform: translateY(-8px); /* Slightly stronger hover effect */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
 }
 
 .link {
@@ -27,41 +38,44 @@
 }
 
 .image {
+  border: 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  position: relative;
   width: 100%;
-  height: 300px; /* Fast højde for billeder */
-  object-fit: cover; /* Sørger for, at billedet dækker hele området uden at blive forvrænget */
+  height: 500px;
+  object-fit: cover; /* Ensure image covers area without distortion */
 }
 
 .headerText {
-  padding: 1rem;
+  padding: 15px;
 }
 
 .headerText h2 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .headerText p {
-  color: #f0f0f0;
+  color: white;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .content {
-  padding: 1rem;
-  background-color: #444; /* Lys baggrund til tekstindhold */
-  border-radius: 0 0 12px 12px; /* Rundede hjørner i bunden */
+  padding: 15px;
 }
 
 .summary {
   color: #ccc;
-  font-size: 0.9rem;
-  padding-bottom: 1rem;
+  font-size: 1rem; /* Increase font size for better readability */
+  margin-bottom: 15px;
 }
 
 .actions {
-  font-size: 1rem;
+  font-size: 1rem; /* Increase font size for actions */
   color: #bbb;
   text-align: right;
 }
