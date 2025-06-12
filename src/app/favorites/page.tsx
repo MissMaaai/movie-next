@@ -1,5 +1,5 @@
-// app/favorites/page.tsx
 import Image from "next/image";
+import classes from "./page.module.css";
 
 interface FavoriteMovie {
   id: number;
@@ -12,7 +12,7 @@ interface FavoriteMovie {
 
 export default async function FavoritesPage() {
   const res = await fetch("http://localhost:3000/api/favoriteMovies", {
-    cache: "no-store", // Sikrer frisk data
+    cache: "no-store", // Ensures fresh data
   });
 
   if (!res.ok) {
@@ -28,31 +28,32 @@ export default async function FavoritesPage() {
   return (
     <div>
       <h1>Mine Favoritfilm</h1>
-      <ul
-        style={{
-          display: "grid",
-          gap: "1rem",
-          gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-        }}
-      >
+      <ul className={classes.cardContainer}>
         {favorites.map((movie) => (
-          <li
-            key={movie.id}
-            style={{
-              border: "1px solid #ccc",
-              padding: "1rem",
-              borderRadius: "10px",
-            }}
-          >
-            <Image
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-              width={200}
-              height={300}
-            />
-            <h2>{movie.title}</h2>
-            <p>⭐ {movie.vote_average}</p>
-            <p>🎬 {movie.release_date}</p>
+          <li key={movie.id} className={classes.card}>
+            <div className={classes.image}>
+              <Image
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+                width={200}
+                height={300}
+              />
+            </div>
+            <div className={classes.headerText}>
+              <h2>{movie.title}</h2>
+              <p>⭐ {movie.vote_average}</p>
+              <p>🎬 {movie.release_date}</p>
+            </div>
+            <div className={classes.content}>
+              <p className={classes.summary}>
+                {movie.overview.length > 125
+                  ? movie.overview.substring(0, 125) + "..."
+                  : movie.overview}
+              </p>
+              <div className={classes.actions}>
+                <span>Release: {movie.release_date}</span>
+              </div>
+            </div>
           </li>
         ))}
       </ul>

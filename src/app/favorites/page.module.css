@@ -1,0 +1,71 @@
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Justerede kortbredde */
+  gap: 1.5rem; /* Øg afstanden mellem kortene */
+  padding: 2rem;
+}
+
+.card {
+  background-color: #333; /* Lettere baggrund */
+  border-radius: 12px; /* Afrundede hjørner */
+  overflow: hidden;
+  min-width: 280px;
+  max-width: 380px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Blødere skygge */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px); /* Mere subtil hover-effekt */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /* Større skygge på hover */
+}
+
+.link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.image {
+  width: 100%;
+  height: 300px; /* Fast højde for billeder */
+  object-fit: cover; /* Sørger for, at billedet dækker hele området uden at blive forvrænget */
+}
+
+.headerText {
+  padding: 1rem;
+}
+
+.headerText h2 {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.headerText p {
+  color: #f0f0f0;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.content {
+  padding: 1rem;
+  background-color: #444; /* Lys baggrund til tekstindhold */
+  border-radius: 0 0 12px 12px; /* Rundede hjørner i bunden */
+}
+
+.summary {
+  color: #ccc;
+  font-size: 0.9rem;
+  padding-bottom: 1rem;
+}
+
+.actions {
+  font-size: 1rem;
+  color: #bbb;
+  text-align: right;
+}
+
+.favoriteicon {
+  font-size: 2rem;
+}
