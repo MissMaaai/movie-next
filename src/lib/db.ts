@@ -1,49 +1,3 @@
-/* import sql from "better-sqlite3";
-
-const db = new sql("favorites.db");
-
-// Opret tabel til favoritter, hvis den ikke allerede eksisterer
-const createFavoritesTable = () => {
-  const stmt = db.prepare(`
-    CREATE TABLE IF NOT EXISTS favorites (
-      movie_id INTEGER PRIMARY KEY,
-      title TEXT NOT NULL,
-      poster_path TEXT NOT NULL,
-      vote_average REAL NOT NULL,
-      overview TEXT NOT NULL,
-      release_date TEXT NOT NULL
-    );
-  `);
-  stmt.run();
-};
-
-export { db, createFavoritesTable };
- */
-
-/* import sql from "better-sqlite3";
-import path from "path";
-
-// Sørg for at databasen ligger i roden af projektet
-const dbPath = path.resolve(process.cwd(), "data.db");
-const db = new sql(dbPath);
-
-// Opret tabel hvis den ikke findes
-db.prepare(
-  `
-  CREATE TABLE IF NOT EXISTS favoriteMovies (
-    id INTEGER PRIMARY KEY,
-    title TEXT NOT NULL,
-    overview TEXT,
-    poster_path TEXT,
-    vote_average REAL,
-    release_date TEXT
-  )
-`
-).run();
-
-export default db; */
-
-
 import Database from "better-sqlite3";
 import { join } from "path";
 
@@ -62,3 +16,9 @@ db.exec(`
 `);
 
 export default db;
+
+//oprettelse af en databaseforbindelse med better-sqlite3
+// og oprettelse af en tabel til favoritter, hvis den ikke allerede findes.
+// Denne tabel indeholder kolonner til at gemme filmens id, titel, oversigt, plakatsti, bedømmelse og udgivelsesdato - (objekter)
+//man kan se tabellen i DB browse for better-sqlite3 i den program jeg har hentet ned, hvis man ønsker at se backend.
+// Tryk refresh(to pile) for at se ændringerne i tabellen

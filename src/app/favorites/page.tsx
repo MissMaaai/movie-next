@@ -13,11 +13,11 @@ interface FavoriteMovie {
 
 export default async function FavoritesPage() {
   const res = await fetch("http://localhost:3000/api/favoriteMovies", {
-    cache: "no-store", // Ensures fresh data
+    cache: "no-store", // denne sikrer at vi altid henter de nyeste data fordi denne side ændrer sig dynamisk
   });
 
   if (!res.ok) {
-    return <p>Kunne ikke hente favoritfilm 😞</p>;
+    return <p>Movie not found</p>;
   }
 
   const favorites: FavoriteMovie[] = await res.json();

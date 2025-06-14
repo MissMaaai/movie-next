@@ -4,14 +4,22 @@ import classes from "./page.module.css";
 import { notFound } from "next/navigation";
 
 interface MoviePageProps {
+  //props er URL-parameterne, der bruges til at hente filmdata.
   params: Promise<{
     id: string;
   }>;
 }
+//Dette er en interface, der definerer de props, der skal bruges i MovieDetailsPage komponenten.
+// params er en Promise, der indeholder et objekt med en id-egenskab. Hvor id er en streng, der repræsenterer filmens ID.
+// Promise bruges til at håndtere asynkrone operationer, hvilket betyder, at MovieDetailsPage kan vente på, at dataene er tilgængelige, før de vises.
 
+//Genereratemetadata tager moviePageProps som argument - den generer info om siden før den bliver vist.
+//generateMetadata bruger Metadata-objektet der indeholder info om filmen og returnerer det objekt med indholdet.
+//Bruger getMovie-funktionen til at hente filmdata baseret på det id, der er givet i params.
+// GenerateMetadata er vigtig for dynamiske sider, da den hele tiden ændrer sig baseret på de data, der hentes fra API'et.
 export async function generateMetadata(props: MoviePageProps) {
-  const params = await props.params;
-  const movie = await getMovie(params.id);
+  const params = await props.params; // henter URL-parameterne ud fra id ( hvilken film der skal vises)
+  const movie = await getMovie(params.id); // henter data om filmen API baseret på id.
   if (!movie) {
     notFound();
   }
@@ -56,5 +64,3 @@ export default async function MovieDetailsPage(props: MoviePageProps) {
     </div>
   );
 }
-
-

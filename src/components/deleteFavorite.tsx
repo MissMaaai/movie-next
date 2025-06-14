@@ -19,7 +19,7 @@ const DeleteFavorite = ({ movieId }: DeleteFavoriteProps) => {
 
   return (
     <button onClick={handleDelete} disabled={isPending}>
-      {isPending ? "Sletter..." : <Trash2 color="white" />}
+      {isPending ? "Removing..." : <Trash2 color="white" />}
     </button>
   );
 };

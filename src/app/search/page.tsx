@@ -1,14 +1,17 @@
 "use client";
+
+export const dynamic = "force-dynamic";
+
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { searchMovies } from "@/lib/searchMovies"; // Importer den nye søgefunktion
+import { useEffect, useState, Suspense } from "react";
+import { searchMovies } from "@/lib/searchMovies";
 import MovieCard from "@/components/movie/movieCard";
 import { Movie } from "@/types/movies";
 import classes from "@/components/movie/movieCard.module.css";
 
-export default function SearchPage() {
-  const searchParams = useSearchParams();
-  const [movies, setMovies] = useState<Movie[]>([]);
+function SearchPageContent() {
+  const searchParams = useSearchParams(); // Brug useSearchParams til at få adgang til URL-forespørgselsparametre
+  const [movies, setMovies] = useState<Movie[]>([]); // Initialiserer en state til at gemme filmene i et array
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -54,5 +57,14 @@ export default function SearchPage() {
         ))}
       </div>
     </div>
+  );
+}
+
+//suspense bruges til at vise en fallback-komponent, mens data hentes asynkront.
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchPageContent />
+    </Suspense>
   );
 }

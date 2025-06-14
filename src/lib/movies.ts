@@ -11,3 +11,6 @@ export async function getMovie(id: string) {
 
   return res.json();
 }
+
+
+// funtion til at hente film fra API 
