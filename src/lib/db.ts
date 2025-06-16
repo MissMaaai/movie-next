@@ -1,7 +1,8 @@
 import Database from "better-sqlite3";
 import { join } from "path";
 
-const dbPath = join(process.cwd(), "favorites.db");
+const dbPath = join(process.cwd(), "favorites.db"); 
+// Returnerer Current Working Directory = den mappe, hvor Node.js blev startet.
 const db = new Database(dbPath);
 
 db.exec(`

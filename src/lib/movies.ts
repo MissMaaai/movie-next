@@ -1,16 +1,16 @@
 export async function getMovie(id: string) {
   const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
-  const res = await fetch(
+  const response = await fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`
   );
 
-  if (!res.ok) {
+  if (!response.ok) {
     throw new Error("Failed to fetch movies");
   }
 
-  return res.json();
+  return response.json(); 
 }
 
 
-// funtion til at hente film fra API 
+//fetch fra TMDB 

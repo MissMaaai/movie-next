@@ -11,11 +11,5 @@ export async function deleteFavorite(movieId: number) {
     body: JSON.stringify({ id: movieId }),
   });
 
-  revalidatePath("/favorites"); // ← Opdater path til din favoritside
+  revalidatePath("/favorites"); // Opdater path til din favoritside (hybrid - ISR)
 }
-
-//server action til at slette en favoritfilm, da jeg bruger better-sqlite3, så sikre jeg også filmen
-//bliver slettet fra databasen.
-// Jeg kunne have valgt at brugr server actions til add favorite, men det ville kræve at jeg
-// skulle have lavet en server action for at tilføje en favoritfilm, og det ville være unødvendigt nu, da jeg har en klassisk route
-// Denne funktion kaldes når brugeren klikker på slet knappen i DeleteFavorite komponenten

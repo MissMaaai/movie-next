@@ -10,9 +10,9 @@ function SearchMovieContent() {
   useEffect(() => {
     const initial = searchParams.get("q") || "";
     setSearchTerm(initial);
-  }, [searchParams]);
+  }, [searchParams]); // urlen ændrer sig, opdaterer søgetermen
 
-  //e.reactEvent er en type, der repræsenterer en begivenhed, bruges fordi det er typescript
+  //e.reactEvent er en type, der repræsenterer en begivenhed, bruges fordi det er typescript og undgå fejl ved typen
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim()) {

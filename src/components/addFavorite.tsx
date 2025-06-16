@@ -1,3 +1,8 @@
+//jeg bruger useEffect til at hente favorit bliver mounted når komponenten indlæses.,
+// useState til at holde styr på om den aktuelle film er en favorit.
+// Når brugeren klikker, toggler jeg status med en fetch-anmodning (enten POST eller DELETE) til mit API i app routeren.
+// Det giver en interaktiv brugeroplevelse.
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -5,21 +10,22 @@ import { Movie } from "@/types/movies";
 import { Heart } from "lucide-react";
 
 interface AddFavoriteProps {
-  movie: Movie;
+  movie: Movie; // TypeScript interface for the movie prop
 }
 
 const AddFavorite = ({ movie }: AddFavoriteProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  // 🔍 Check if the movie is already a favorite when component mounts
+  // tjekker om filmen er i favoritterne ved at hente dem fra serveren
   useEffect(() => {
+    // useEffect kører når komponenten mountes en gang eller når movie.id ændres
     const checkIfFavorite = async () => {
       try {
-        const res = await fetch("/api/favoriteMovies");
-        if (res.ok) {
-          const favorites: Movie[] = await res.json();
-          const isFav = favorites.some((fav) => fav.id === movie.id);
-          setIsFavorite(isFav);
+        const response = await fetch("/api/favoriteMovies"); // Henter alle favoritfilm fra serveren
+        if (response.ok) {
+          const favorites: Movie[] = await response.json();
+          const isFav = favorites.some((fav) => fav.id === movie.id); //vha lamdba funktionen tjekker vi om filmen er i favoritterne
+          setIsFavorite(isFav); // opdaterer state med resultatet
         }
       } catch (error) {
         console.error("Failed to check favorites", error);
@@ -27,16 +33,16 @@ const AddFavorite = ({ movie }: AddFavoriteProps) => {
     };
 
     checkIfFavorite();
-  }, [movie.id]);
+  }, [movie.id]); // Kører kun når movie.id ændres
 
-  // ➕➖ Toggle favorite status on click
+ 
   const toggleFavorite = async (e: React.MouseEvent) => {
     e.preventDefault(); // Prevent navigation
 
-    const method = isFavorite ? "DELETE" : "POST";
+    const method = isFavorite ? "DELETE" : "POST"; //sender DELETE hvis filmen allerede er i favoritterne, ellers POST for at tilføje den nå der trykkes på hjertet
 
     try {
-      const res = await fetch("/api/favoriteMovies", {
+      const response = await fetch("/api/favoriteMovies", {
         method,
         headers: {
           "Content-Type": "application/json",
@@ -44,7 +50,7 @@ const AddFavorite = ({ movie }: AddFavoriteProps) => {
         body: JSON.stringify(movie),
       });
 
-      if (res.ok) {
+      if (response.ok) {
         setIsFavorite(!isFavorite);
       } else {
         console.error("Could not add/remove from favorites");
