@@ -13,7 +13,7 @@ interface FavoriteMovie {
 
 export default async function FavoritesPage() {
   const response = await fetch("http://localhost:3000/api/favoriteMovies", {
-    cache: "no-store", // denne sikrer at vi altid henter de nyeste data fordi denne side ændrer sig dynamisk
+    cache: "no-store", // ikke cache, da vi vil have de nyeste data når der hentes en request
   });
 
   if (!response.ok) {

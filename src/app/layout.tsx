@@ -7,9 +7,7 @@ export const metadata = {
   description: "Find your favorite movies with Next.js",
 };
 
-//ReactNode nødvendigt, fordi det sikrer, at children kan være af enhver type, som React kan rendere (tsx, tekst, tal, funtkion).
-// RootLayout er en komponent, der fungerer som en wrapper for hele applikationen.
-
+//ReactNode nødvendigt, fordi det sikrer, at children kan være af enhver type, som React kan rendere (tsx, tekst, tal, funtkion)
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">

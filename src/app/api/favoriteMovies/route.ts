@@ -1,5 +1,3 @@
-//dette er en app router, der interagerer med databasen, den håndterer API-anmodninger for at hente, tilføje og fjerne favoritfilm i en SQLite-database
-// ved hjælp af Next.js og better-sqlite3.
 import db from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server"; //bruges til at håndtere HTTP-anmodninger og svar i Next. (pakken skal hentes ned)
 

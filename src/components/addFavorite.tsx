@@ -16,7 +16,6 @@ interface AddFavoriteProps {
 const AddFavorite = ({ movie }: AddFavoriteProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  // tjekker om filmen er i favoritterne ved at hente dem fra serveren
   useEffect(() => {
     // useEffect kører når komponenten mountes en gang eller når movie.id ændres
     const checkIfFavorite = async () => {

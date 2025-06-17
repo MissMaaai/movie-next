@@ -13,4 +13,3 @@ export async function getMovie(id: string) {
 }
 
 
-//fetch fra TMDB 
